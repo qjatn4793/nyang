@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beomble.nyang.login.mapper.LoginMapper">
+    <select id="loginMember" parameterType="com.beomble.nyang.login.vo.LoginVo" resultType="com.beomble.nyang.login.vo.LoginVo">
+        SELECT member_id, member_name, member_email, member_phone FROM nyang_member
+        WHERE member_id = #{memberId} AND member_pw = #{memberPw}
+    </select>
+
+    <insert id="createMember" parameterType="com.beomble.nyang.login.vo.LoginVo">
+        INSERT INTO nyang_member (member_id, member_pw, member_name, member_email, member_phone)
+        VALUES (#{memberId}, #{memberPw}, #{memberName}, #{memberEmail}, #{memberPhone})
+    </insert>
+
+    <select id="checkCat" parameterType="String" resultType="HashMap">
+        SELECT nyang_cat.cat_seq, nyang_cat.cat_img, nyang_cat.cat_name FROM nyang_member
+        LEFT JOIN nyang_cat ON nyang_member.member_id = nyang_cat.member_id
+        WHERE nyang_member.member_id = #{memberId};
+    </select>
+</mapper>

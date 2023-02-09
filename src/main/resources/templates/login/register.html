@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+    <div>
+        <label>id : </label><input id="id" type="text"/>
+    </div>
+    <div>
+        <label>pw : </label><input id="pw" type="password"/>
+    </div>
+    <div>
+        <label>이름 : </label><input id="name" type="text"/>
+    </div>
+    <div>
+        <label>휴대폰 번호 : </label><input id="phone" type="tel"/>
+    </div>
+    <div>
+        <label>이메일 : </label><input id="email" type="email"/>
+    </div>
+
+    <div>
+        <button id="register">회원가입</button>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $("#register").click(function(){
+
+        // json 형식으로 데이터 set
+        var params = {
+            memberId : $("#id").val(),
+            memberPw : $("#pw").val(),
+            memberPhone : $("#phone").val(),
+            memberName : $("#name").val(),
+            memberEmail : $("#email").val()
+        };
+
+        // ajax 통신
+        $.ajax({
+            type : "POST",
+            url : "/createUser",
+            data : JSON.stringify(params),
+            contentType: 'application/json',
+            success : function(res){
+                //alert(res.code);
+                alert("회원가입 성공");
+                location.replace("/login");
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert("통신 실패.")
+            }
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+
+mybatis:
+  configuration:
+    multiple-result-sets-enabled: false
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    jdbc-type-for-null: varchar
+    default-fetch-size: 500
+  mapper-locations:
+    - classpath:mybatis/mapper/*.xml
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/nyang_db?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: securus1234
+  devtools:
+    livereload:
+      enabled: true
+    remote:
+      restart:
+        enabled: true
+  freemarker:
+    cache: false
+  thymeleaf:
+    cache: false

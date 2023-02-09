@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beomble.nyang.records.mapper.RecordsMapper">
+    <insert id="createRecords" parameterType="com.beomble.nyang.records.vo.RecordsVo">
+        INSERT INTO nyang_records (member_id, records, start_date, end_date)
+        VALUES (#{memberId}, #{records}, #{startDate}, #{endDate})
+    </insert>
+</mapper>

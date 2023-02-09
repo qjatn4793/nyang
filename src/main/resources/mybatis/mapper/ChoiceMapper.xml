@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beomble.nyang.choice.mapper.ChoiceMapper">
+    <insert id="createCat" parameterType="com.beomble.nyang.choice.vo.ChoiceVo">
+        INSERT INTO nyang_cat (cat_img, cat_name, member_id)
+        VALUES (#{catImg}, #{catName}, #{memberId})
+    </insert>
+</mapper>

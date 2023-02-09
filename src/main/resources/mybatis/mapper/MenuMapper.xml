@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beomble.nyang.menu.mapper.MenuMapper">
+    <select id="catLists" parameterType="com.beomble.nyang.menu.vo.MenuVo" resultType="com.beomble.nyang.menu.vo.MenuVo">
+        SELECT * FROM nyang_cat
+        WHERE member_id = #{memberId}
+        LIMIT #{catNum} ,1
+    </select>
+
+    <select id="catCounts" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM nyang_cat
+        WHERE member_id = #{memberId}
+    </select>
+
+    <select id="selectCatImg" parameterType="com.beomble.nyang.menu.vo.MenuVo" resultType="com.beomble.nyang.menu.vo.MenuVo">
+        SELECT * FROM nyang_cat
+        WHERE member_id = #{memberId}
+        LIMIT #{catSeq},1
+    </select>
+</mapper>

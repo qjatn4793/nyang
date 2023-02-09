@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>고양이 선택</title>
+    <link rel="stylesheet" href="/common/css/choice.css" />
+</head>
+<body>
+<div class="slide slide_wrap">
+    <div class="slide_item"><img src="/common/img/cat/1.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/2.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/3.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/4.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/5.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/6.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/7.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/8.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/9.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/10.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/11.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/12.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/13.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/14.png"></div>
+    <div class="slide_item"><img src="/common/img/cat/15.png"></div>
+    <div class="slide_prev_button slide_button">◀</div>
+    <div class="slide_next_button slide_button">▶</div>
+    <ul class="slide_pagination"></ul>
+</div>
+<input type="hidden" id="memberId" th:value="${session.loginMember.memberId}"/>
+<div style="text-align:center;">
+    <div th:text="${session.loginMember.memberName}"></div> 님 환영합니다.
+    <div><input type="text" class="catName" id="catName" placeholder="고양이 이름을 입력해 주세요!"/></div>
+    <button style="width: 85px; border: 0px; border-radius: 4px; background-color: black; color:white;" onclick="addCat()">확인</button>
+    <button style="width: 85px; border: 0px; border-radius: 4px; background-color: black; color:white;" onclick="logout()">취소</button>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/common/js/slideShow.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".slide_prev_button").click(function () {
+            // 만일 li 요소를 클릭한다면, 그 클릭한 형제요소 간의 인덱스 순서를 구해 반환해준다.
+            //console.log(catNum);
+        });
+        $(".slide_next_button").click(function () {
+            // 만일 li 요소를 클릭한다면, 그 클릭한 형제요소 간의 인덱스 순서를 구해 반환해준다.
+            //console.log(catNum);
+        });
+    });
+    
+    function addCat() {
+        // json 형식으로 데이터 set
+        var params = {
+            catName : $("#catName").val(),   // 고양이 이름 : 입력값
+            memberId : $("#memberId").val(), // 유저 id : 자동 입력값
+            catImg : catNum                  // 선택 이미지
+        };
+
+        // ajax 통신
+        $.ajax({
+            type : "POST",
+            url : "/choice",
+            data : JSON.stringify(params),
+            contentType: 'application/json',
+            success : function(data){
+
+                if (data == 1) {
+                    alert("고양이 생성 성공");
+                    location.replace("/menu");
+                }else if (data == 0) {
+                    alert("오류 발생! error code : 1");
+                }else {
+                    alert("오류 발생! error code : 2");
+                }
+
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert("통신 실패.")
+            }
+        });
+    }
+
+    function logout() {
+        // ajax 통신
+        $.ajax({
+            type : "POST",
+            url : "/logout",
+            contentType: 'application/json',
+            success : function(data){
+                alert("로그아웃 성공");
+                location.replace("/");
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert("통신 실패.")
+            }
+        });
+    }
+
+</script>
+</html>

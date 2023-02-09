@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<style>
+    .selectCat {
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+        width: 100px;
+        height: 30px;
+        font-size: 1rem;
+        text-align: center;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴</title>
+    <link rel="stylesheet" href="/common/css/menu.css" />
+</head>
+<header class="header">
+    <button style="width: 85px; border: 0px; border-radius: 4px; background-color: black; color:white; float:right;" onclick="logout()">로그아웃</button>
+    <div id="selectCat"></div>
+</header>
+<body>
+    <div class="left"><a href="/records"><img src="/common/img/btn/lBtn.png" style="margin-top: 50%; float: right;"></a></div>
+    <div class="main">
+        <div style="text-align: center;">
+            <p id="catProfile"></p>
+            <button style="width: 120px; border: 0px; border-radius: 4px; background-color: black; color:white;">고양이 이름 변경</button>
+            <button style="width: 120px; border: 0px; border-radius: 4px; background-color: black; color:white;">고양이 삭제</button>
+        </div>
+        <img style="width:100%;" id=motionCatImg>
+    </div>
+    <div class="right"><a href="#"><img src="/common/img/btn/rBtn.png" style="margin-top: 50%; float: left"></a></div>
+</body>
+<footer class="footer"><a href="#"><img src="/common/img/btn/bBtn.png" style="margin-left: 50%; margin-top: 100px; height:50px;"></a></footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    $('document').ready(function () {
+        $.ajax({
+            type : "GET",
+            url : "/catLists",
+            contentType: 'application/json',
+            success : function(data){
+                var arr = new Array(100);
+                for (var i=0; i<data.length; i++)
+                {
+                    arr[i] = "<option id='"+ data[i].catSeq + "'>" + data[i].catName + "</option>";
+                }
+                document.getElementById("selectCat").innerHTML = "<select class='selectCat' id='selectCat' onchange='changeCat(this.selectedIndex)'>" + arr.join() + "</select>";
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert("통신 실패.")
+            }
+        });
+
+        var params = {
+            catSeq : 0
+        };
+
+        $.ajax({
+            type : "POST",
+            url : "/selectCatImg",
+            data : JSON.stringify(params),
+            contentType: 'application/json',
+            success : function(data){
+                var catImg = parseInt(data.catImg) + 1;
+                document.getElementById("catProfile").innerText = data.catName;
+                document.getElementById("motionCatImg").src = "/common/img/motionCat/"+ catImg +".gif";
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert("통신 실패.");
+            }
+        });
+    });
+
+    function changeCat(catSeq) {
+        var params = {
+            catSeq : catSeq
+        };
+
+        $.ajax({
+            type : "POST",
+            url : "/selectCatImg",
+            data : JSON.stringify(params),
+            contentType: 'application/json',
+            success : function(data){
+                var catImg = parseInt(data.catImg) + 1;
+                document.getElementById("catProfile").innerText = data.catName;
+                document.getElementById("motionCatImg").src = "/common/img/motionCat/"+ catImg +".gif";
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert("통신 실패.");
+            }
+        });
+    }
+
+    function logout() {
+        // ajax 통신
+        $.ajax({
+            type : "POST",
+            url : "/logout",
+            contentType: 'application/json',
+            success : function(data){
+                alert("로그아웃 성공");
+                location.replace("/");
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert("통신 실패.")
+            }
+        });
+    }
+</script>
+</html>
