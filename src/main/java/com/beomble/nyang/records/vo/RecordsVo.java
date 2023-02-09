@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecordsVo {
+    private int recordsSeq;
     private String memberId;
     private String records;
     private String startDate;

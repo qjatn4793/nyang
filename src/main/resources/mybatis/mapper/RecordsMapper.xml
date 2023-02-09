@@ -3,8 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.beomble.nyang.records.mapper.RecordsMapper">
+
+    <select id="viewRecords" parameterType="String" resultType="HashMap">
+        SELECT records_seq, member_id, records as title, start_date as start, end_date as end FROM nyang_records
+        WHERE member_id = #{memberId}
+    </select>
+
     <insert id="createRecords" parameterType="com.beomble.nyang.records.vo.RecordsVo">
-        INSERT INTO nyang_records (member_id, records, start_date, end_date)
-        VALUES (#{memberId}, #{records}, #{startDate}, #{endDate})
+        INSERT INTO nyang_records (records_seq, member_id, records, start_date, end_date)
+        VALUES (#{recordsSeq}, #{memberId}, #{records}, #{startDate}, #{endDate})
     </insert>
 </mapper>

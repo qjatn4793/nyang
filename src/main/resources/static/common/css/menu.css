@@ -13,21 +13,21 @@ body{
 }
 
 .left {
-    height : 600px;
+    height : 100%;
     /*background-color: green;*/
     float : left;
     width:25%;
 }
 
 .main {
-    height : 600px;
+    height : 100%;
     /*background-color: yellow;*/
     float: left;
     width:50%;
 }
 
 .right {
-    height : 600px;
+    height : 100%;
     /*background-color: #6aa09a;*/
     float : right;
     width:25%;

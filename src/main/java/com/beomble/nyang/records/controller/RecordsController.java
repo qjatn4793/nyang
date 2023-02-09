@@ -7,12 +7,23 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @ResponseBody
 @RestController
 public class RecordsController {
     RecordsService recordsService;
+
+    @GetMapping("/Records")
+    public List<Map<String, Object>> viewRecords(HttpServletRequest request){
+
+        LoginVo loginVo = (LoginVo) request.getSession().getAttribute("loginMember");
+        String memberId = loginVo.getMemberId();
+
+        return recordsService.viewRecords(memberId);
+    }
 
     @PostMapping("/Records")
     public int createRecords(@RequestBody RecordsVo recordsVo, HttpServletRequest request){
