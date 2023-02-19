@@ -34,4 +34,9 @@ public class LoginService {
 
         return loginMapper.checkCat(memberId);
     }
+
+    public int catCount (String memberId) {
+
+        return loginMapper.catCount(memberId);
+    }
 }

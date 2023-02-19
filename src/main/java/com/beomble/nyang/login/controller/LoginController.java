@@ -63,4 +63,13 @@ public class LoginController {
 
         return "logout";
     }
+
+    @GetMapping("/catCount")
+    public int catCount(HttpServletRequest request) {
+
+        LoginVo loginVo = (LoginVo) request.getSession().getAttribute("loginMember");
+        String memberId = loginVo.getMemberId();
+
+        return loginService.catCount(memberId);
+    }
 }

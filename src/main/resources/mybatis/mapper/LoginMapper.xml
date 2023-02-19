@@ -18,4 +18,9 @@
         LEFT JOIN nyang_cat ON nyang_member.member_id = nyang_cat.member_id
         WHERE nyang_member.member_id = #{memberId};
     </select>
+
+    <select id="catCount" parameterType="String" resultType="Int">
+        SELECT count(*) FROM nyang_cat
+        WHERE member_id = #{memberId};
+    </select>
 </mapper>

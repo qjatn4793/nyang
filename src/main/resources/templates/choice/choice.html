@@ -7,7 +7,7 @@
     <title>고양이 선택</title>
     <link rel="stylesheet" href="/common/css/choice.css" />
 </head>
-<body>
+<body style="margin-top: 10%;">
 <div class="slide slide_wrap">
     <div class="slide_item"><img src="/common/img/cat/1.png"></div>
     <div class="slide_item"><img src="/common/img/cat/2.png"></div>
@@ -30,13 +30,14 @@
 </div>
 <input type="hidden" id="memberId" th:value="${session.loginMember.memberId}"/>
 <div style="text-align:center;">
-    <div th:text="${session.loginMember.memberName}"></div> 님 환영합니다.
+    <div th:text="${session.loginMember.memberName}">님</div>환영합니다.
     <div><input type="text" class="catName" id="catName" placeholder="고양이 이름을 입력해 주세요!"/></div>
     <button style="width: 85px; border: 0px; border-radius: 4px; background-color: black; color:white;" onclick="addCat()">확인</button>
     <button style="width: 85px; border: 0px; border-radius: 4px; background-color: black; color:white;" onclick="logout()">취소</button>
 </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!--팝업 라이브러리-->
 <script src="/common/js/slideShow.js"></script>
 <script>
     $(document).ready(function () {
@@ -51,6 +52,13 @@
     });
     
     function addCat() {
+
+        if ($("#catName").val() == "" || $("#catName").val() == undefined || $("#catName").val() == null) {
+            Swal.fire(`앗! 아직 이름을 입력하지 않았어요`);
+            return;
+        }
+
+
         // json 형식으로 데이터 set
         var params = {
             catName : $("#catName").val(),   // 고양이 이름 : 입력값

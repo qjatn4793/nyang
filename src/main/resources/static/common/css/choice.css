@@ -16,7 +16,7 @@
 
 }
 
-@media (max-width: 500px) {
+@media (max-width: 950px) {
     .slide {
         /* layout */
         display: flex;
@@ -85,49 +85,49 @@
 
 /* 각 슬라이드가 변경되는 것을 시각적으로 확인하기 쉽도록 각 슬라이드별 색상 적용 */
 .slide_item:nth-child(1) {
-    background-color: darkgoldenrod;
+    /*background-color: darkgoldenrod;*/
 }
 .slide_item:nth-child(2) {
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
 .slide_item:nth-child(3) {
-    background-color: blueviolet;
+    /*background-color: blueviolet;*/
 }
 .slide_item:nth-child(4) {
-    background-color: burlywood;
+    /*background-color: burlywood;*/
 }
 .slide_item:nth-child(5) {
-    background-color: cornflowerblue;
+    /*background-color: cornflowerblue;*/
 }
 .slide_item:nth-child(6) {
-    background-color: darkgoldenrod;
+    /*background-color: darkgoldenrod;*/
 }
 .slide_item:nth-child(7) {
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
 .slide_item:nth-child(8) {
-    background-color: blueviolet;
+    /*background-color: blueviolet;*/
 }
 .slide_item:nth-child(9) {
-    background-color: burlywood;
+    /*background-color: burlywood;*/
 }
 .slide_item:nth-child(10) {
-    background-color: cornflowerblue;
+    /*background-color: cornflowerblue;*/
 }
 .slide_item:nth-child(11) {
-    background-color: darkgoldenrod;
+    /*background-color: darkgoldenrod;*/
 }
 .slide_item:nth-child(12) {
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
 .slide_item:nth-child(13) {
-    background-color: blueviolet;
+    /*background-color: blueviolet;*/
 }
 .slide_item:nth-child(14) {
-    background-color: burlywood;
+    /*background-color: burlywood;*/
 }
 .slide_item:nth-child(15) {
-    background-color: cornflowerblue;
+    /*background-color: cornflowerblue;*/
 }
 
 /* 페이지네이션 스타일 */

@@ -16,4 +16,6 @@ public interface LoginMapper {
     int createMember(LoginVo loginVo);
 
     HashMap<String, String> checkCat(String memberId);
+
+    int catCount(String memberId);
 }
